@@ -8,7 +8,9 @@ let User = require('../models/user');
 
 // Register Form
 router.get('/register', function(req, res){
-  res.render('register');
+  res.render('register',{
+    title:"Register"
+  });
 });
 
 // Register Proccess
@@ -30,7 +32,8 @@ router.post('/register', function(req, res){
 
   if(errors){
     res.render('register', {
-      errors:errors
+      errors:errors,
+      title:"Register"
     });
   } else {
     let newUser = new User({
@@ -62,7 +65,9 @@ router.post('/register', function(req, res){
 
 // Login Form
 router.get('/login', function(req, res){
-  res.render('login');
+  res.render('login',{
+    title:"Login"
+  });
 });
 
 // Login Process

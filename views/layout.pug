@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title TG-Manager
+    title=title
     link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet' href='/css/style.css')
   body
@@ -16,11 +16,12 @@ html
           a.navbar-brand(href='/') Tight Grips
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
-            li
-              a(href='/') Home
             if user
               li
                 a(href='/covers') Covers
+            if user
+              li
+                a(href='/repository') Repository
           ul.nav.navbar-nav.navbar-right
             if user
               li

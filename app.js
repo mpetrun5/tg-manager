@@ -57,6 +57,16 @@ app.use(function (req, res, next) {
   next();
 });
 
+//Access control
+function ensureAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('danger', 'Please login');
+    res.redirect('/users/login');
+  }
+}
+
 // Express Validator Middleware
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -87,24 +97,27 @@ app.get('*', function(req, res, next){
 });
 
 // Home Route
-app.get('/', function(req, res){
-/*  Article.find({}, function(err, articles){
+app.get('/', ensureAuthenticated, function(req, res){
+/*  Notice.find({}, function(err, articles){
     if(err){
       console.log(err);
     } else { */
       res.render('index', {
-        title:'Obavijesti',
-        //articles: articles
+        title:'Home',
+        //notice: notice
       });
       //}
   // });
 });
 
 // Route Files
+let repository = require('./routes/repository')
 let covers = require('./routes/covers');
 let users = require('./routes/users');
 app.use('/covers', covers);
 app.use('/users', users);
+app.use('/repository', repository);
+
 
 // Start Server
 app.listen(3002, function(){

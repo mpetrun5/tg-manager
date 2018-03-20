@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  h3 Upload
+  form(class="fileupload", method="post", action="/repository/upload", enctype='multipart/form-data')
+    input(type="file", name="upfile", id="image")
+    input(type="submit", class="btn")
+  br
+  span#message
+  br
+  br
+  br
+  h3 Files
+  div
+  table
+    thead
+      tr: th
+    tbody
+      each name, i in files
+        tr
+          td
+            a(href='/repository/download/'+name)="" + name

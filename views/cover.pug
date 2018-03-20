@@ -1,0 +1,8 @@
+extends layout
+
+block content
+
+  iframe(width='560', height='315', src='http://www.youtube.com/embed/'+article.body, frameborder='0', allowfullscreen='allowfullscreen')
+  h1= article.title
+  a.btn.btn-default(href='/covers/edit/'+article._id) Edit
+  a.btn.btn-danger.delete-article(href='/covers/',data-id=article._id) Delete

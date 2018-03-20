@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 #{title}
+  a.btn.btn-default(href='/covers/add') Add Cover
+  p
+    ul.list-group
+      each article, i in articles
+        li.list-group-item
+          a(href="/covers/"+article._id)= article.title

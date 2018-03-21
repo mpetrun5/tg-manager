@@ -10,5 +10,5 @@ block content
           div(class="container-fluid")
             h4=notice.title
             p=notice.body
-              a.btn.btn-default(href='/notice/edit/'+notice._id class="btn pull-right") Edit
+              a(href='/notice/edit/'+notice._id class="btn pull-right") Edit
             p=notice.author+", " + notice.timeStamp

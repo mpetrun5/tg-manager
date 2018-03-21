@@ -17,7 +17,7 @@ router.get('/', ensureAuthenticated, function(req, res){
         notices: notices
       });
     }
-  });
+  }).sort({_id:-1});
 });
 
 // Add Route
@@ -92,14 +92,13 @@ router.post('/notice/add', function(req, res){
     notice.title = req.body.title;
     notice.body = req.body.body;
     notice.author = req.user.name;
-    notice.timeStamp = new Date()
-    console.log(notice);
+    notice.timeStamp = new Date().toString();
     notice.save(function(err){
       if(err){
         console.log(err);
         return;
       } else {
-        req.flash('success','Cover Added');
+        req.flash('success','Notice Added');
         res.redirect('/');
       }
     });

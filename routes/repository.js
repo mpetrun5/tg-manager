@@ -37,7 +37,6 @@ router.post('/upload',function(req,res){
         res.redirect('/repository');
       }
       else {
-        console.log("File Uploaded",name);
         req.flash("success", "File uploaded!");
         res.redirect("/repository");
       }
@@ -51,7 +50,7 @@ router.post('/upload',function(req,res){
 
 //Download
 router.get('/download/:id', function(req, res){
-  res.download(uploadFolder+ req.params.id); 
+  res.download(uploadFolder+ req.params.id);
 });
 
 

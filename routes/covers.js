@@ -81,7 +81,6 @@ router.post('/edit/:id', function(req, res){
 
   Article.update(query, article, function(err){
     if(err){
-      console.log(err);
       return;
     } else {
       req.flash('success', 'Cover Updated');

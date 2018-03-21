@@ -26,9 +26,6 @@ db.on('error', function(err){
 // Init App
 const app = express();
 
-// Bring in Models
-let Article = require('./models/article');
-
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -40,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// Set Public Folder
+// Set public Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session Middleware
@@ -56,16 +53,6 @@ app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
-
-//Access control
-function ensureAuthenticated(req, res, next){
-  if(req.isAuthenticated()){
-    return next();
-  } else {
-    req.flash('danger', 'Please login');
-    res.redirect('/users/login');
-  }
-}
 
 // Express Validator Middleware
 app.use(expressValidator({
@@ -96,27 +83,16 @@ app.get('*', function(req, res, next){
   next();
 });
 
-// Home Route
-app.get('/', ensureAuthenticated, function(req, res){
-/*  Notice.find({}, function(err, articles){
-    if(err){
-      console.log(err);
-    } else { */
-      res.render('index', {
-        title:'Home',
-        //notice: notice
-      });
-      //}
-  // });
-});
 
 // Route Files
-let repository = require('./routes/repository')
+let index = require('./routes/index');
+let repository = require('./routes/repository');
 let covers = require('./routes/covers');
 let users = require('./routes/users');
 app.use('/covers', covers);
 app.use('/users', users);
 app.use('/repository', repository);
+app.use('/', index);
 
 
 // Start Server

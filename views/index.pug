@@ -2,3 +2,13 @@ extends layout
 
 block content
   h1 Obavijesti
+  a.btn.btn-default(href='/notice/add') Add Notice
+  p
+    ul.list-group
+      each notice, i in notices
+        li.list-group-item
+          div(class="container-fluid")
+            h4=notice.title
+            p=notice.body
+              a.btn.btn-default(href='/notice/edit/'+notice._id class="btn pull-right") Edit
+            p=notice.author+", " + notice.timeStamp

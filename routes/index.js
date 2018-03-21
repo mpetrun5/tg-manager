@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
 
 //Notice model
 let Notice = require('../models/notice');
@@ -12,9 +13,12 @@ router.get('/', ensureAuthenticated, function(req, res){
     if(err){
       console.log(err);
     } else {
+      for(var i=0; i<notices.length; i++){
+        notices[i].timeStamp = moment(notices[i].timeStamp).fromNow().toString();
+      }
       res.render('index', {
         title:'Home',
-        notices: notices
+        notices: notices,
       });
     }
   }).sort({_id:-1});
@@ -43,8 +47,8 @@ router.post('/notice/edit/:id', function(req, res){
   let notice = {};
   notice.title = req.body.title;
   notice.body = req.body.body;
-  notice.timeStamp = "edited: " + new Date().toString();
-  notice.author = req.user.name;
+  notice.timeStamp = moment(new Date()).format("YYYY-MM-DD hh:mm a").toString();
+  notice.author = req.user.name + " edit ";
 
   let query = {_id:req.params.id}
 
@@ -92,7 +96,7 @@ router.post('/notice/add', function(req, res){
     notice.title = req.body.title;
     notice.body = req.body.body;
     notice.author = req.user.name;
-    notice.timeStamp = new Date().toString();
+    notice.timeStamp = moment(new Date()).format("YYYY-MM-DD hh:mm a").toString();
     notice.save(function(err){
       if(err){
         console.log(err);

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 // Article Model
 let Article = require('../models/article');
 // User Model
@@ -14,7 +15,7 @@ router.get('/add', ensureAuthenticated, function(req, res){
 });
 
 //Covers Router
-router.get('/', function(req, res){
+router.get('/', ensureAuthenticated, function(req, res){
   Article.find({}, function(err, articles){
     if(err){
       console.log(err);
@@ -106,16 +107,17 @@ router.delete('/:id', function(req, res){
 });
 
 // Get Single Article
-router.get('/:id', function(req, res){
+router.get('/:id', ensureAuthenticated, function(req, res){
   Article.findById(req.params.id, function(err, article){
 
       res.render('cover', {
         article:article,
+        title:"Cover"
     });
   });
 });
 
-// Access Control
+//Access control
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
@@ -124,5 +126,6 @@ function ensureAuthenticated(req, res, next){
     res.redirect('/users/login');
   }
 }
+
 
 module.exports = router;

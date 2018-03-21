@@ -55,7 +55,7 @@ router.post('/add', function(req, res){
         return;
       } else {
         req.flash('success','Cover Added');
-        res.redirect('/');
+        res.redirect('/covers');
       }
     });
   }

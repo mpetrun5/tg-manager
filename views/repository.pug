@@ -4,7 +4,11 @@ block content
   h1= title
   h3 Upload
   form(class="fileupload", method="post", action="/repository/upload", enctype='multipart/form-data')
-    input(type="file", name="upfile", id="image")
+    div.container
+    .row
+      .col-md-6
+          .form-group.files
+            input( class="form-control" type='file', name="upfile", id="image")
     input(type="submit", class="btn")
   br
   span#message

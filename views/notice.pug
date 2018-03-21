@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div.info
+    h1.title= notice.title
+    div.datetime= convertTimestampToRfc822(notice.timestamp)
+    div.tags
+      each tag in document.tags
+        a.tag(href='#{getTagCloud()[tag].url}') ##{tag}
+  div.content!= content

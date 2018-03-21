@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 #{title}
+  form(method='POST', action='/notice/edit/'+notice._id)
+    #form-group
+      label Title:
+      input.form-control(name='title', type='text', value=notice.title)
+    #form-group
+      label Add notice text:
+      textarea.form-control(name='body')= notice.body
+    br
+    input.btn.btn-primary(type='submit',value='Submit')
+    a.btn.btn-danger.delete-notice(href='/covers/',data-id=notice._id) Delete

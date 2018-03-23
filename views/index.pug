@@ -1,14 +1,27 @@
 extends layout
 
 block content
-  h2 Obavijesti
-  a.btn.btn-default(href='/notice/add') Add Notice
-  p
-    ul.list-group
-      each notice, i in notices
-        li.list-group-item
-          div(class="container-fluid")
-            h4=notice.title
-            p=notice.body
-              a(href='/notice/edit/'+notice._id class="btn pull-right") Edit
-            p=notice.author+", " + notice.timeStamp
+  h4 Notices
+    a.btn.btn-default.pull-right(href='/notice/add') Add Notice
+  ul.list-group
+    each notice, i in notices
+      li.list-group-item
+        .container-fluid
+          #m9.message-item
+            .message-inner
+              .message-head.clearfix
+                .avatar.pull-left
+                  notice.author
+                    img(src='https://ssl.gstatic.com/accounts/ui/avatar_2x.png' width="50px")
+                .user-detail
+                  h5.handle= notice.title
+                  .post-meta
+                    .asker-meta
+                      span.qa-message-what
+                      span.qa-message-when
+                        span.qa-message-when-data=notice.timeStamp
+                      span.qa-message-who
+                        span.qa-message-who-pad #{" "} by #{" "}
+                        span.qa-message-who-data=notice.author
+              .qa-message-content
+                p=notice.body

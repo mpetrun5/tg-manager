@@ -47,7 +47,7 @@ router.post('/notice/edit/:id', function(req, res){
   let notice = {};
   notice.title = req.body.title;
   notice.body = req.body.body;
-  notice.timeStamp = moment(new Date()).format("YYYY-MM-DD hh:mm a").toString();
+  notice.timeStamp = moment().toString();
   notice.author = req.user.name + " edit ";
 
   let query = {_id:req.params.id}
@@ -96,7 +96,7 @@ router.post('/notice/add', function(req, res){
     notice.title = req.body.title;
     notice.body = req.body.body;
     notice.author = req.user.name;
-    notice.timeStamp = moment(new Date()).format("YYYY-MM-DD hh:mm a").toString();
+    notice.timeStamp = moment().toString();
     notice.save(function(err){
       if(err){
         console.log(err);

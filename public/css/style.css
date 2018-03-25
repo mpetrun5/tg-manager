@@ -19,30 +19,21 @@
   padding-left: 8px;
 }
 
-@media (max-width: 550px) {
-    .big-container {
-        display: none;
-    }
+.googleCalendar{
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-bottom: 50%;
+  overflow:hidden;
 }
-@media (min-width: 550px) {
-    .small-container {
-        display: none;
-    }
-}
-/* Responsive iFrame */
-.responsive-iframe-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
-}
-.responsive-iframe-container iframe,
-.vresponsive-iframe-container object,
-.vresponsive-iframe-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+
+.googleCalendar iframe{
+  position: absolute;
+  padding-top: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

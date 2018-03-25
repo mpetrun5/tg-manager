@@ -21,7 +21,7 @@ router.get('/', ensureAuthenticated, function(req, res){
         notices: notices,
       });
     }
-  }).limit(10).sort({_id:-1});
+  }).sort({_id:-1}).limit(15);
 });
 
 // Add Route

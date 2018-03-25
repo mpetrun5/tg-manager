@@ -90,9 +90,11 @@ let index = require('./routes/index');
 let repository = require('./routes/repository');
 let covers = require('./routes/covers');
 let users = require('./routes/users');
+let calendar = require('./routes/calendar');
 app.use('/covers', covers);
 app.use('/users', users);
 app.use('/repository', repository);
+app.use('/calendar', calendar);
 app.use('/', index);
 
 

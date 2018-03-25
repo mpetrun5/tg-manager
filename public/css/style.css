@@ -19,19 +19,45 @@
   padding-left: 8px;
 }
 
-.googleCalendar{
+.googleCalendar-desktop{
   position: relative;
   height: 0;
   width: 100%;
   padding-bottom: 50%;
-  overflow:hidden;
 }
 
-.googleCalendar iframe{
+.googleCalendar-mobile{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .googleCalendar-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .googleCalendar-mobile {
+    display: none;
+  }
+}
+
+.googleCalendar-desktop iframe{
   position: absolute;
   padding-top: 0px;
   padding-left: 5px;
   padding-right: 5px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.googleCalendar-mobile iframe{
+  position:absolute;
   top: 0;
   left: 0;
   width: 100%;

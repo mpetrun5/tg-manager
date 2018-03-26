@@ -40,7 +40,6 @@ router.post('/upload/:id',function(req,res){
       name = file.name,
       type = file.mimetype;
     var uploadpath = uploadFolder + req.params.id + "/" + name;
-    console.log(uploadpath);
   file.mv(uploadpath,function(err){
       if(err){
         req.flash("danger", "File upload error!");

@@ -34,12 +34,13 @@ router.get('/:id', ensureAuthenticated, function(req, res){
 
 
 //Upload Post
-router.post('/upload',function(req,res){
+router.post('/upload/:id',function(req,res){
   if(req.files){
     var file = req.files.file,
       name = file.name,
       type = file.mimetype;
-    var uploadpath = uploadFolder + name;
+    var uploadpath = uploadFolder + req.params.id + "/" + name;
+    console.log(uploadpath);
   file.mv(uploadpath,function(err){
       if(err){
         req.flash("danger", "File upload error!");

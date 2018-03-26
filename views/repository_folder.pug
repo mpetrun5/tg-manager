@@ -4,7 +4,7 @@ block content
   .capitalize
     h3=folder
   .container-fluid
-    form.dropzone#drop(enctype='multipart/form-data', action='/repository/upload', method='post')
+    form.dropzone#drop(enctype='multipart/form-data', action='/repository/upload/'+folder, method='post')
     br
     br
     br

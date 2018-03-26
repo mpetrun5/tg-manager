@@ -26,8 +26,8 @@ router.get('/', ensureAuthenticated, function(req, res){
 
 //Upload Post
 router.post('/upload',function(req,res){
-  if(req.files.upfile){
-    var file = req.files.upfile,
+  if(req.files){
+    var file = req.files.file,
       name = file.name,
       type = file.mimetype;
     var uploadpath = uploadFolder + name;

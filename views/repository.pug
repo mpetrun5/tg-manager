@@ -1,27 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  h3 Upload
-  form(class="fileupload", method="post", action="/repository/upload", enctype='multipart/form-data')
-    div.container
-    .row
-      .col-md-6
-          .form-group.files
-            input( class="form-control" type='file', name="upfile", id="image")
-    input(type="submit", class="btn")
-  br
-  span#message
+  .container-fluid
+  form.dropzone#drop(enctype='multipart/form-data', action='/repository/upload', method='post')
   br
   br
   br
   h3 Files
-  div
-  table
-    thead
-      tr: th
-    tbody
-      each name, i in files
-        tr
-          td
-            a(href='/repository/download/'+name)="" + name
+    table
+      thead
+        tr: th
+      tbody
+        each name, i in files
+          tr
+            td
+              a(href='/repository/download/'+name)="" + name

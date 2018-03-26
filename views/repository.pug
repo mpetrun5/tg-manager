@@ -2,16 +2,18 @@ extends layout
 
 block content
   .container-fluid
-  form.dropzone#drop(enctype='multipart/form-data', action='/repository/upload', method='post')
-  br
-  br
-  br
-  h3 Files
-    table
-      thead
-        tr: th
-      tbody
-        each name, i in files
-          tr
-            td
-              a(href='/repository/download/'+name)="" + name
+    a(href="/repository/songs" height="50px")
+      img(src="/images/folder.png")
+      label Songs
+  .container-fluid
+    a(href="/repository/images")
+      img(src="/images/folder.png")
+      label Images
+  .container-fluid
+    a(href="/repository/lyrics")
+      img(src="/images/folder.png")
+      label Lyrics
+  .container-fluid
+    a(href="/repository/other")
+      img(src="/images/folder.png")
+      label Other

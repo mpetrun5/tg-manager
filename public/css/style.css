@@ -2,7 +2,14 @@ body{
   background:url(http://www.thomaspodgro.com/pen/hero-bg.jpg) top left no-repeat;
   background-size:cover;
 }
- 
+
+.download{
+  list-style-image: url('/images/download.png');
+}
+
+.capitalize{
+  text-transform: capitalize;
+}
 
 .alert-error{
   color: #a94442;

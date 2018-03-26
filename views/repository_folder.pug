@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .capitalize
+    h3=folder
+  .container-fluid
+    form.dropzone#drop(enctype='multipart/form-data', action='/repository/upload', method='post')
+    br
+    br
+    br
+    h3 Files
+  .container-fluid
+    ul.list-group.download
+      each name, i in files
+        li.list-item
+          a(href='/repository/download/'+folder+"/"+name)="" + name

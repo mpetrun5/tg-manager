@@ -13,16 +13,25 @@ router.use(upload());
 
 //Repository Router
 router.get('/', ensureAuthenticated, function(req, res){
-  fs.readdir(uploadFolder, function(err, files){
+  res.render('repository',{
+    title:"Repository"
+  });
+});
+
+//Repository Router
+router.get('/:id', ensureAuthenticated, function(req, res){
+  fs.readdir(uploadFolder + "/" + req.params.id, function(err, files){
     if(err){
       req.flash('danger', 'Unable to scan directory');
     }
-    res.render('repository', {
+    res.render('repository_folder', {
       title:"Repository",
+      folder: req.params.id,
       files:files
     });
   });
 });
+
 
 //Upload Post
 router.post('/upload',function(req,res){
@@ -49,9 +58,22 @@ router.post('/upload',function(req,res){
 })
 
 //Download
-router.get('/download/:id', function(req, res){
-  res.download(uploadFolder+ req.params.id);
+router.get('/download/other/:id', function(req, res){
+  res.download(uploadFolder+"other/" + req.params.id);
 });
+//Download
+router.get('/download/songs/:id', function(req, res){
+  res.download(uploadFolder+"songs/" + req.params.id);
+});
+//Download
+router.get('/download/images/:id', function(req, res){
+  res.download(uploadFolder+"images/" + req.params.id);
+});
+//Download
+router.get('/download/lyrics/:id', function(req, res){
+  res.download(uploadFolder+"lyrics/" + req.params.id);
+});
+
 
 
 

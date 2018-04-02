@@ -91,9 +91,7 @@ router.post('/edit/:id', function(req, res){
 
 // Delete Article
 router.delete('/:id', function(req, res){
-
   let query = {_id:req.params.id}
-
   Article.findById(req.params.id, function(err, article){
       Article.remove(query, function(err){
         if(err){

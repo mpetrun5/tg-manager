@@ -1,54 +1,146 @@
 doctype html
-html
+html(lang='en')
   head
-    title=title
-    link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
-    link(rel='stylesheet' href='/css/style.css')
-    link(rel="stylesheet" href='/bower_components/dropzone/dist/dropzone.css')
-    meta(name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;")
+    // Open Graph Meta
+    meta(property='og:type', content='website')
+    title Tg-manager
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Main CSS
+    link(rel='stylesheet', type='text/css', href='/template/css/main.css')
+    link(rel='stylesheet' type='text/css' href='/css/style.css')
+    link(rel='stylesheet', type='text/css', href='/bower_components/dropzone/dist/dropzone.css')
+    // Font-icon css
+    link(rel='stylesheet', type='text/css', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+    //Favicon
     link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
     link(rel="icon" href="/images/favicon.ico" type="image/x-icon")
-  body
-    nav.navbar.navbar-inverse
-      .container
-        .navbar-header
-          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='/') Tg-Manager
-        #navbar.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            if user
-              li
-                a(href='/covers') Covers
-            if user
-              li
-                a(href='/repository') Repository
-            if user
-              li
-                a(href='/calendar') Calendar
-          ul.nav.navbar-nav.navbar-right
-            if user
-              li
-                a(href='/users/logout') Logout
-            else
-              li
-                a(href='/users/register') Register
-              li
-                a(href='/users/login') Login
-    .container
-      != messages('message', locals)
-      if errors
-        each error, i in errors
-          div(class="alert alert-danger") #{error.msg}
+  body.app.sidebar-mini.rtl
+    // Navbar
+    header.app-header
+      a.app-header__logo(href='/') Tg-manager
+      // Sidebar toggle button
+      a.app-sidebar__toggle(href='#', data-toggle='sidebar', aria-label='Hide Sidebar')
+      // Navbar Right Menu
+      ul.app-nav
+        li.dropdown
+        // User Menu
+        li.dropdown
+          a.app-nav__item(href='#', data-toggle='dropdown', aria-label='Open Profile Menu')
+            i.fa.fa-user.fa-lg
+          ul.dropdown-menu.settings-menu.dropdown-menu-right
+            li
+              a.dropdown-item(href='/users/logout')
+                i.fa.fa-sign-out.fa-lg
+                |  Logout
+    // Sidebar menu
+    .app-sidebar__overlay(data-toggle='sidebar')
+    aside.app-sidebar
+      ul.app-menu
+        li
+          a.app-menu__item(href='/')
+            i.app-menu__icon.fa.fa-dashboard
+            span.app-menu__label Dashboard
+        li
+          a.app-menu__item(href='/covers')
+            i.app-menu__icon.fa.fa-pie-chart
+            span.app-menu__label Covers & Setlists
+        li.treeview
+          a.app-menu__item(href='#', data-toggle='treeview')
+            i.app-menu__icon.fa.fa-th-list
+            span.app-menu__label Repository
+            i.treeview-indicator.fa.fa-angle-right
+          ul.treeview-menu
+            li
+              a.treeview-item(href='/repository/songs')
+                i.icon.fa.fa-circle-o
+                |  Songs
+            li
+              a.treeview-item(href='/repository/images')
+                i.icon.fa.fa-circle-o
+                |  Images
+            li
+              a.treeview-item(href='/repository/lyrics')
+                i.icon.fa.fa-circle-o
+                |  Lyrics
+            li
+              a.treeview-item(href='/repository/other')
+                i.icon.fa.fa-circle-o
+                |  Other
+        li
+          a.app-menu__item(href='/calendar')
+            i.app-menu__icon.fa.fa-pie-chart
+            span.app-menu__label Gigs
+    main.app-content
+      .row
+        != messages('message',locals)
+        if errors
+          each error, i in errors
+            div(class="alert alert-danger") #{error.msg}
       block content
-      br
-      hr
-      footer
-        p Copyright &copy; 2018 TG
-    script(src='/bower_components/dropzone/dist/dropzone.js')
-    script(src='/bower_components/jquery/dist/jquery.js')
-    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    // Essential javascripts for application to work
+    script(src='/template/js/jquery-3.2.1.min.js')
+    script(src='/template/js/popper.min.js')
+    script(src='/template/js/bootstrap.min.js')
+    script(src='/template/js/main.js')
     script(src='/js/main.js')
+    // The javascript plugin to display page loading on top
+    script(src='/template/js/plugins/pace.min.js')
+    // Page specific javascripts
+    script(src='/bower_components/dropzone/dist/dropzone.js')
+    script(type='text/javascript', src='/template/js/plugins/chart.js')
+    script(type='text/javascript').
+      var data = {
+      labels: ["January", "February", "March", "April", "May"],
+      datasets: [
+      {
+      label: "My First dataset",
+      fillColor: "rgba(220,220,220,0.2)",
+      strokeColor: "rgba(220,220,220,1)",
+      pointColor: "rgba(220,220,220,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(220,220,220,1)",
+      data: [65, 59, 80, 81, 56]
+      },
+      {
+      label: "My Second dataset",
+      fillColor: "rgba(151,187,205,0.2)",
+      strokeColor: "rgba(151,187,205,1)",
+      pointColor: "rgba(151,187,205,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(151,187,205,1)",
+      data: [28, 48, 40, 19, 86]
+      }
+      ]
+      };
+      var pdata = [
+      {
+      value: 300,
+      color: "#46BFBD",
+      highlight: "#5AD3D1",
+      label: "Complete"
+      },
+      {
+      value: 50,
+      color:"#F7464A",
+      highlight: "#FF5A5E",
+      label: "In-Progress"
+      }
+      ]
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var pieChart = new Chart(ctxp).Pie(pdata);
+    // Google analytics script
+    script(type='text/javascript').
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-72504830-1', 'auto');
+      ga('send', 'pageview');
+      }

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 #{title}
+  form(method='POST', action='/event/add')
+    #form-group
+      label Title:
+      input.form-control(name='title', type='text' )
+    #form-group
+      label Add event text:
+      textarea.form-control(name='body' placeholder='Opis:')
+    #form-group
+      label Date
+      br
+      input(type='date' name='date')
+    #form-group
+      label Time
+      br
+      input(type='time' name='time')
+    br
+    input.btn.btn-primary(type='submit',value='Submit')

@@ -20,6 +20,13 @@ router.post('/register', function(req, res){
   const username = req.body.username;
   const password = req.body.password;
   const password2 = req.body.password2;
+  const image;
+  if(!req.body.image){
+    image = default.jpeg;
+  }
+  else{
+    image = req.body.image;
+  }
 
   req.checkBody('name', 'Name is required').notEmpty();
   req.checkBody('email', 'Email is required').notEmpty();
@@ -40,7 +47,8 @@ router.post('/register', function(req, res){
       name:name,
       email:email,
       username:username,
-      password:password
+      password:password,
+      image:image
     });
 
     bcrypt.genSalt(10, function(err, salt){

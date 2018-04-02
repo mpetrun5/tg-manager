@@ -23,14 +23,7 @@
   padding-top: 10px;
 }
 
-.googleCalendar-desktop{
-  position: relative;
-  height: 0;
-  width: 100%;
-  padding-bottom: 50%;
-}
-
-.googleCalendar-mobile{
+.googleCalendar{
   position: relative;
   height: 100%;
   width: 100%;

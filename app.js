@@ -100,6 +100,6 @@ app.use('/', index);
 
 
 // Start Server
-app.listen(3002, function(){
-  console.log('Server started on port 3002...');
+app.listen(80, function(){
+  console.log('Server started on port 80...');
 });

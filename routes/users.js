@@ -20,9 +20,9 @@ router.post('/register', function(req, res){
   const username = req.body.username;
   const password = req.body.password;
   const password2 = req.body.password2;
-  const image;
+  var image;
   if(!req.body.image){
-    image = default.jpeg;
+    image ="default.jpeg";
   }
   else{
     image = req.body.image;
